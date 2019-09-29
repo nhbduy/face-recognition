@@ -6,10 +6,14 @@ import Clarifai from 'clarifai';
 import './App.css';
 
 import Navigation from './components/Navigation/Navigation';
+import SignIn from './components/SignIn/SignIn';
+import SignUp from './components/SignUp/SignUp';
 import Logo from './components/Logo/Logo';
 import Rank from './components/Rank/Rank';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
+
+import { SIGN_UP, SIGN_IN, SIGN_OUT, HOME } from './route';
 
 const particleOptions = {
   particles: {
@@ -31,6 +35,8 @@ function App() {
   const [input, setInput] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [box, setBox] = useState({});
+  const [route, setRoute] = useState(SIGN_IN);
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
   const calculateFaceLocation = data => {
     const face = data.outputs[0].data.regions[0].region_info.bounding_box;
@@ -67,17 +73,35 @@ function App() {
       .catch(error => console.log(error));
   };
 
+  const onRouteChange = data => {
+    if (data === SIGN_OUT) setIsSignedIn(false);
+    else if (data === HOME) setIsSignedIn(true);
+    setRoute(data);
+  };
+
+  const renderContentDOM = () => {
+    if (route === HOME)
+      return (
+        <React.Fragment>
+          <Logo />
+          <Rank />
+          <ImageLinkForm
+            onInputChange={onInputChange}
+            onButtonSubmit={onButtonSubmit}
+          />
+          <FaceRecognition box={box} imageUrl={imageUrl} />
+        </React.Fragment>
+      );
+    else if (route === SIGN_IN || route === SIGN_OUT)
+      return <SignIn onRouteChange={onRouteChange} />;
+    else if (route === SIGN_UP) return <SignUp onRouteChange={onRouteChange} />;
+  };
+
   return (
     <div className='App'>
       <Particles className='particles' params={particleOptions} />
-      <Navigation />
-      <Logo />
-      <Rank />
-      <ImageLinkForm
-        onInputChange={onInputChange}
-        onButtonSubmit={onButtonSubmit}
-      />
-      <FaceRecognition box={box} imageUrl={imageUrl} />
+      <Navigation isSignedIn={isSignedIn} onRouteChange={onRouteChange} />
+      {renderContentDOM()}
     </div>
   );
 }
