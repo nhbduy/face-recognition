@@ -34,9 +34,14 @@ const database = {
 //-------------------------------------------------
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 //-------------------------------------------------
 // / --> res = worked!!!
@@ -47,18 +52,30 @@ app.get('/', (req, res) => {
 //-------------------------------------------------
 // /signin --> POST = success/fail
 app.post('/signin', (req, res) => {
+  // bcrypt.compare(
+  //   'tomfssa',
+  //   '$2b$10$8TUr4yN1TXWMMVp3Of2khO.smXeu2rxBafwTLiXCPPox6X8POkV/S',
+  //   (err, res) => {
+  //     console.log('match', res);
+  //   }
+  // );
+
   if (
-    req.body.email === database.users[0].email &&
-    req.body.password === database.users[0].password
+    database.users.some(user => user.email === req.body.email) &&
+    database.users.some(user => user.password === req.body.password)
   )
-    res.json('logged in!!!');
-  else res.status(400).json('error logging in');
+    res.status(200).json({ status: 200, message: 'ok' });
+  else res.status(400).json({ status: 400, message: 'ko' });
 });
 
 //-------------------------------------------------
 // /register --> POST = user
 app.post('/register', (req, res) => {
   const { name, email, password } = req.body;
+
+  bcrypt.hash(password, saltRounds, (err, hash) => {
+    console.log(hash);
+  });
 
   database.users.push({
     id: database.users.length + 1,
