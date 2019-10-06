@@ -60,12 +60,13 @@ app.post('/signin', (req, res) => {
   //   }
   // );
 
-  if (
-    database.users.some(user => user.email === req.body.email) &&
-    database.users.some(user => user.password === req.body.password)
-  )
-    res.status(200).json({ status: 200, message: 'ok' });
-  else res.status(400).json({ status: 400, message: 'ko' });
+  const user = database.users.filter(
+    item => item.email === req.body.email && item.password === req.body.password
+  )[0];
+
+  if (user) {
+    res.status(200).json({ status: 200, message: 'ok', user });
+  } else res.status(400).json({ status: 400, message: 'ko' });
 });
 
 //-------------------------------------------------
@@ -73,9 +74,9 @@ app.post('/signin', (req, res) => {
 app.post('/register', (req, res) => {
   const { name, email, password } = req.body;
 
-  bcrypt.hash(password, saltRounds, (err, hash) => {
-    console.log(hash);
-  });
+  // bcrypt.hash(password, saltRounds, (err, hash) => {
+  //   console.log(hash);
+  // });
 
   database.users.push({
     id: database.users.length + 1,
@@ -86,7 +87,10 @@ app.post('/register', (req, res) => {
     joined: new Date()
   });
 
-  res.json(database.users[database.users.length - 1]);
+  const recentUser = database.users[database.users.length - 1];
+  delete recentUser.password;
+
+  res.json(recentUser);
 });
 
 //-------------------------------------------------

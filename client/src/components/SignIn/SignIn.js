@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { SIGN_UP, HOME } from '../../route';
 
-const SignIn = ({ onRouteChange }) => {
+const SignIn = ({ loadUser, onRouteChange }) => {
   const [signInEmail, setSignInEmail] = useState(null);
   const [signInPassword, setSignInPassword] = useState(null);
 
@@ -15,9 +15,6 @@ const SignIn = ({ onRouteChange }) => {
   };
 
   const onSubmitSignIn = () => {
-    console.log(signInEmail);
-    console.log(signInPassword);
-
     fetch('http://localhost:3000/signin', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
@@ -28,8 +25,11 @@ const SignIn = ({ onRouteChange }) => {
     })
       .then(response => response.json())
       .then(data => {
-        if (data.status === 200 && data.message === 'ok') onRouteChange(HOME);
-        else if (data.status === 400 && data.message === 'ko') alert('cannot signing in');
+        if (data.status === 200 && data.message === 'ok') {
+          loadUser(data.user);
+          onRouteChange(HOME);
+        } else if (data.status === 400 && data.message === 'ko')
+          alert('cannot signing in');
       });
   };
 

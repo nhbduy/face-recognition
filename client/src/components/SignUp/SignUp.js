@@ -1,8 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { SIGN_IN, HOME } from '../../route';
 
-const SignUp = ({ onRouteChange }) => {
+const SignUp = ({ loadUser, onRouteChange }) => {
+  const [signUpName, setSignUpName] = useState(null);
+  const [signUpEmail, setSignUpEmail] = useState(null);
+  const [signUpPassword, setSignUpPassword] = useState(null);
+  const [okToRegister, setOkToRegister] = useState(false);
+
+  const onNameChange = event => {
+    setSignUpName(event.target.value);
+  };
+
+  const onEmailChange = event => {
+    setSignUpEmail(event.target.value);
+  };
+
+  const onPasswordChange = event => {
+    setSignUpPassword(event.target.value);
+  };
+
+  const onRetypePasswordChange = event => {
+    if (event.target.value !== signUpPassword) {
+      console.log('match');
+      setOkToRegister(true);
+    }
+  };
+
+  const onSubmitSignUp = () => {
+    if (!signUpName || !signUpEmail || !signUpPassword || !okToRegister) {
+      alert('cannot register!!!');
+      return;
+    }
+
+    fetch('http://localhost:3000/register', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: signUpName,
+        email: signUpEmail,
+        password: signUpPassword
+      })
+    })
+      .then(response => response.json())
+      .then(user => {
+        if (user) {
+          loadUser(user);
+          onRouteChange(HOME);
+        }
+      });
+  };
+
   return (
     <React.Fragment>
       <article className='br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center'>
@@ -19,6 +67,7 @@ const SignUp = ({ onRouteChange }) => {
                   type='text'
                   name='name'
                   id='name'
+                  onChange={onNameChange}
                 />
               </div>
               <div className='mv3'>
@@ -30,6 +79,7 @@ const SignUp = ({ onRouteChange }) => {
                   type='email'
                   name='email-address'
                   id='email-address'
+                  onChange={onEmailChange}
                 />
               </div>
               <div className='mv3'>
@@ -41,6 +91,7 @@ const SignUp = ({ onRouteChange }) => {
                   type='password'
                   name='password'
                   id='password'
+                  onChange={onPasswordChange}
                 />
               </div>
               <div className='mv3'>
@@ -52,6 +103,7 @@ const SignUp = ({ onRouteChange }) => {
                   type='password'
                   name='retype-password'
                   id='retype-password'
+                  onChange={onRetypePasswordChange}
                 />
               </div>
             </fieldset>
@@ -60,7 +112,7 @@ const SignUp = ({ onRouteChange }) => {
                 className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib'
                 type='submit'
                 value='Register'
-                onClick={() => onRouteChange(HOME)}
+                onClick={() => onSubmitSignUp()}
               />
             </div>
             <div className='lh-copy mt3'>
