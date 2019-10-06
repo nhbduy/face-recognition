@@ -53,7 +53,7 @@ app.get('/', (req, res) => {
 // /signin --> POST = success/fail
 app.post('/signin', (req, res) => {
   // bcrypt.compare(
-  //   'tomfssa',
+  //   'tom',
   //   '$2b$10$8TUr4yN1TXWMMVp3Of2khO.smXeu2rxBafwTLiXCPPox6X8POkV/S',
   //   (err, res) => {
   //     console.log('match', res);
@@ -74,15 +74,15 @@ app.post('/signin', (req, res) => {
 app.post('/register', (req, res) => {
   const { name, email, password } = req.body;
 
-  // bcrypt.hash(password, saltRounds, (err, hash) => {
-  //   console.log(hash);
-  // });
+  bcrypt.hash(password, saltRounds, (err, hash) => {
+    console.log(hash);
+  });
 
   database.users.push({
     id: database.users.length + 1,
     name,
     email,
-    password,
+    password: hashPassword,
     entries: 0,
     joined: new Date()
   });
@@ -112,7 +112,7 @@ app.get('/profile/:id', (req, res) => {
 
 //-------------------------------------------------
 // /image --> PUT --> user
-app.post('/image', (req, res) => {
+app.put('/image', (req, res) => {
   const { id } = req.body;
   let found = false;
 

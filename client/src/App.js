@@ -83,7 +83,19 @@ function App() {
         // URL
         input
       )
-      .then(response => displayFaceBox(calculateFaceLocation(response)))
+      .then(response => {
+        fetch('http://localhost:3000/image', {
+          method: 'put',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            id: user.id
+          })
+        })
+          .then(response => response.json())
+          .then(count => setUser({ ...user, entries: count }));
+
+        displayFaceBox(calculateFaceLocation(response));
+      })
       .catch(error => console.log(error));
   };
 
