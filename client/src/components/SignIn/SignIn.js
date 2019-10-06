@@ -25,7 +25,7 @@ const SignIn = ({ loadUser, onRouteChange }) => {
     })
       .then(response => response.json())
       .then(data => {
-        if (data.status === 200 && data.message === 'ok') {
+        if (data.status === 200 && data.message === 'ok' && data.user.id) {
           loadUser(data.user);
           onRouteChange(HOME);
         } else if (data.status === 400 && data.message === 'ko')
