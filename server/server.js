@@ -1,36 +1,3 @@
-const database = {
-  users: [
-    {
-      id: 1,
-      name: 'John',
-      email: 'john@gmail.com',
-      password: 'john',
-      entries: 0,
-      joined: new Date()
-    },
-    {
-      id: 2,
-      name: 'Sally',
-      email: 'sally@gmail.com',
-      password: 'sally',
-      entries: 0,
-      joined: new Date()
-    }
-  ],
-  login: [
-    {
-      id: 1,
-      hash: '',
-      email: 'john@gmail.com'
-    },
-    {
-      id: 2,
-      hash: '',
-      email: 'sally@gmail.com'
-    }
-  ]
-};
-
 const dbConnection = {
   client: 'pg',
   connection: {
@@ -54,12 +21,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-// knex.select().from('users').then(data => {
-//   console.log(data);
-// });
-
 //-------------------------------------------------
-// / --> res = worked!!!
+// / --> res = user list
 app.get('/', (req, res) => {
   return knex('users')
     .select()
@@ -136,7 +99,6 @@ app.post('/register', (req, res) => {
 
 //-------------------------------------------------
 // /profile/:userId --> GET = user
-
 app.get('/profile/:id', (req, res) => {
   const { id } = req.params;
 
