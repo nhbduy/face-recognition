@@ -53,13 +53,13 @@ app.post('/signin', (req, res) => {
                 .status(200)
                 .json({ status: 200, message: 'ok', user: user[0] })
             )
-            .catch(res.status(400).json({ status: 400, message: 'ko' }));
+            .catch(error => res.status(400).json({ status: 400, message: 'ko' }));
         } else {
           return res.status(400).json({ status: 400, message: 'ko' });
         }
       });
     })
-    .catch(res.status(400).json({ status: 400, message: 'ko' }));
+    .catch(error => res.status(400).json({ status: 400, message: 'ko' }));
 });
 
 //-------------------------------------------------
@@ -68,8 +68,8 @@ app.post('/register', (req, res) => {
   const { name, email, password } = req.body;
 
   let hashPwd = null;
-  bcrypt.hash(password, saltRounds, (err, hash) => {
-    hashPwd = hash;
+  bcrypt.hash(password, saltRounds, (errHash, resHash) => {
+    hashPwd = resHash;
 
     if (!hashPwd) return res.status(400).json('unable to hash password');
     else {
@@ -94,7 +94,7 @@ app.post('/register', (req, res) => {
             .then(trx.commit)
             .catch(trx.rollback);
         })
-        .catch(res.status(400).json('unable to register'));
+        .catch(error => res.status(400).json('unable to register'));
     }
   });
 });
@@ -112,7 +112,7 @@ app.get('/profile/:id', (req, res) => {
         ? res.status(200).json(response[0])
         : res.status(400).json('no user existed');
     })
-    .catch(res.status(400).json('error getting user'));
+    .catch(error => res.status(400).json('error getting user'));
 });
 
 //-------------------------------------------------
@@ -125,7 +125,7 @@ app.put('/image', (req, res) => {
     .increment('entries', 1)
     .returning('entries')
     .then(response => res.status(200).json(response[0]))
-    .catch(res.status(400).json('error getting entries'));
+    .catch(error => res.status(400).json('error getting entries'));
 });
 
 //-------------------------------------------------
