@@ -1,2 +1,3 @@
-Face Recognition Application (Client)
-(Built in React JS)
+### Face Recognition Application (Client)
+
+(Built in **React JS**)
