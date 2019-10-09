@@ -47,6 +47,7 @@ app.get('/profile/:id', profile.handleProfile(knex));
 //-------------------------------------------------
 // /image --> PUT --> user
 app.put('/image', image.handleImage(knex));
+app.post('/imageUrl', image.handleImageUrl);
 
 //-------------------------------------------------
 app.listen(SERVER_PORT, () => {

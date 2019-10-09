@@ -3,6 +3,9 @@ const saltRounds = 10;
 const handleRegister = (knex, bcrypt) => (req, res) => {
   const { name, email, password } = req.body;
 
+  if (!name || !email || !password)
+    return res.status(400).json('incorrect form submission');
+
   let hashPwd = null;
   bcrypt.hash(password, saltRounds, (errHash, resHash) => {
     hashPwd = resHash;

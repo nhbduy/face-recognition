@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import Particles from 'react-particles-js';
-import Clarifai from 'clarifai';
 
 import './App.css';
 
@@ -26,10 +25,6 @@ const particleOptions = {
     }
   }
 };
-
-const app = new Clarifai.App({
-  apiKey: 'd7dcd0f9a66d407597e4780e5e2f3f3d'
-});
 
 const defaultUserData = {
   id: '',
@@ -86,13 +81,15 @@ function App() {
   const onButtonSubmit = () => {
     setImageUrl(input);
 
-    app.models
-      .predict(
-        Clarifai.FACE_DETECT_MODEL,
-        // URL
+    fetch('http://localhost:3000/imageUrl', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
         input
-      )
-      .then(response => {
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
         fetch('http://localhost:3000/image', {
           method: 'put',
           headers: { 'Content-Type': 'application/json' },
@@ -103,7 +100,8 @@ function App() {
           .then(response => response.json())
           .then(count => setUser({ ...user, entries: count }))
           .catch(console.error);
-        displayFaceBox(calculateFaceLocation(response));
+
+        displayFaceBox(calculateFaceLocation(data));
       })
       .catch(error => console.error(error));
   };
