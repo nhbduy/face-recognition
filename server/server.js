@@ -1,4 +1,4 @@
-const dbConnection = {
+const DB_CONNECTION = {
   client: 'pg',
   connection: {
     host: '127.0.0.1',
@@ -8,11 +8,13 @@ const dbConnection = {
   }
 };
 
+const SERVER_PORT = 3000;
+
 //-------------------------------------------------
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const knex = require('knex')(dbConnection);
+const knex = require('knex')(DB_CONNECTION);
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -51,13 +53,13 @@ app.post('/signin', (req, res) => {
                 .status(200)
                 .json({ status: 200, message: 'ok', user: user[0] })
             )
-            .catch(err => res.status(400).json({ status: 400, message: 'ko' }));
+            .catch(res.status(400).json({ status: 400, message: 'ko' }));
         } else {
           return res.status(400).json({ status: 400, message: 'ko' });
         }
       });
     })
-    .catch(error => res.status(400).json({ status: 400, message: 'ko' }));
+    .catch(res.status(400).json({ status: 400, message: 'ko' }));
 });
 
 //-------------------------------------------------
@@ -92,7 +94,7 @@ app.post('/register', (req, res) => {
             .then(trx.commit)
             .catch(trx.rollback);
         })
-        .catch(error => res.status(400).json('unable to register'));
+        .catch(res.status(400).json('unable to register'));
     }
   });
 });
@@ -110,7 +112,7 @@ app.get('/profile/:id', (req, res) => {
         ? res.status(200).json(response[0])
         : res.status(400).json('no user existed');
     })
-    .catch(error => res.status(400).json('error getting user'));
+    .catch(res.status(400).json('error getting user'));
 });
 
 //-------------------------------------------------
@@ -123,10 +125,10 @@ app.put('/image', (req, res) => {
     .increment('entries', 1)
     .returning('entries')
     .then(response => res.status(200).json(response[0]))
-    .catch(error => res.status(400).json('error getting entries'));
+    .catch(res.status(400).json('error getting entries'));
 });
 
 //-------------------------------------------------
-app.listen(3000, () => {
-  console.log('hellooooo port 3000');
+app.listen(SERVER_PORT, () => {
+  console.log('Welcome to FACE-RECOGNITION SERVER');
 });
