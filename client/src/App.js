@@ -101,11 +101,11 @@ function App() {
           })
         })
           .then(response => response.json())
-          .then(count => setUser({ ...user, entries: count }));
-
+          .then(count => setUser({ ...user, entries: count }))
+          .catch(console.error);
         displayFaceBox(calculateFaceLocation(response));
       })
-      .catch(error => console.log(error));
+      .catch(error => console.error(error));
   };
 
   const onRouteChange = data => {
