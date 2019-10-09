@@ -15,8 +15,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const knex = require('knex')(DB_CONNECTION);
-
 const bcrypt = require('bcrypt');
+
 const saltRounds = 10;
 
 const app = express();
@@ -53,10 +53,11 @@ app.post('/signin', (req, res) => {
                 .status(200)
                 .json({ status: 200, message: 'ok', user: user[0] })
             )
-            .catch(error => res.status(400).json({ status: 400, message: 'ko' }));
-        } else {
-          return res.status(400).json({ status: 400, message: 'ko' });
+            .catch(error =>
+              res.status(400).json({ status: 400, message: 'ko' })
+            );
         }
+        return res.status(400).json({ status: 400, message: 'ko' });
       });
     })
     .catch(error => res.status(400).json({ status: 400, message: 'ko' }));
@@ -72,30 +73,29 @@ app.post('/register', (req, res) => {
     hashPwd = resHash;
 
     if (!hashPwd) return res.status(400).json('unable to hash password');
-    else {
-      return knex
-        .transaction(trx => {
-          trx('login')
-            .insert({
-              hash: hashPwd,
-              email
-            })
-            .returning('email')
-            .then(loginEmail => {
-              return trx('users')
-                .insert({
-                  name,
-                  email: loginEmail[0],
-                  joined: new Date()
-                })
-                .returning('*')
-                .then(response => res.status(200).json(response[0]));
-            })
-            .then(trx.commit)
-            .catch(trx.rollback);
-        })
-        .catch(error => res.status(400).json('unable to register'));
-    }
+
+    return knex
+      .transaction(trx => {
+        trx('login')
+          .insert({
+            hash: hashPwd,
+            email
+          })
+          .returning('email')
+          .then(loginEmail => {
+            return trx('users')
+              .insert({
+                name,
+                email: loginEmail[0],
+                joined: new Date()
+              })
+              .returning('*')
+              .then(response => res.status(200).json(response[0]));
+          })
+          .then(trx.commit)
+          .catch(trx.rollback);
+      })
+      .catch(error => res.status(400).json('unable to register'));
   });
 });
 

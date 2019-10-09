@@ -31,21 +31,30 @@ const app = new Clarifai.App({
   apiKey: 'd7dcd0f9a66d407597e4780e5e2f3f3d'
 });
 
-const defaultUserData = {
-  id: '',
-  name: '',
-  email: '',
-  entries: 0,
-  joined: ''
+const initialState = {
+  input: '',
+  imageUrl: '',
+  box: {},
+  route: SIGN_IN,
+  isSignedIn: false,
+  user: {
+    id: '',
+    name: '',
+    email: '',
+    entries: 0,
+    joined: ''
+  }
 };
 
 function App() {
-  const [input, setInput] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  const [box, setBox] = useState({});
-  const [route, setRoute] = useState(SIGN_IN);
-  const [isSignedIn, setIsSignedIn] = useState(false);
-  const [user, setUser] = useState(defaultUserData);
+  const [state, setState] = useState(initialState);
+
+  // const [input, setInput] = useState('');
+  // const [imageUrl, setImageUrl] = useState('');
+  // const [box, setBox] = useState({});
+  // const [route, setRoute] = useState(SIGN_IN);
+  // const [isSignedIn, setIsSignedIn] = useState(false);
+  // const [user, setUser] = useState(defaultUserData);
 
   const loadUser = data => {
     const { id, name, email, entries, joined } = data;
