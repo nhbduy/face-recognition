@@ -30,23 +30,23 @@ app.use(cors());
 
 //-------------------------------------------------
 // / --> res = user list
-app.get('/', (req, res) => list.handleList(req, res, knex));
+app.get('/', list.handleList(knex));
 
 //-------------------------------------------------
 // /signin --> POST = success/fail
-app.post('/signin', (req, res) => signin.handleSignIn(req, res, knex, bcrypt));
+app.post('/signin', signin.handleSignIn(knex, bcrypt));
 
 //-------------------------------------------------
 // /register --> POST = user
-app.post('/register', (req, res) => register.handleRegister(req, res, knex, bcrypt));
+app.post('/register', register.handleRegister(knex, bcrypt));
 
 //-------------------------------------------------
 // /profile/:userId --> GET = user
-app.get('/profile/:id', (req, res) => profile.handleProfile(req, res, knex));
+app.get('/profile/:id', profile.handleProfile(knex));
 
 //-------------------------------------------------
 // /image --> PUT --> user
-app.put('/image', (req, res) => image.handleImage(req, res, knex));
+app.put('/image', image.handleImage(knex));
 
 //-------------------------------------------------
 app.listen(SERVER_PORT, () => {

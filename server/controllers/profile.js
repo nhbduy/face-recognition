@@ -1,4 +1,4 @@
-const handleProfile = (req, res, knex) => {
+const handleProfile = knex => (req, res) => {
   const { id } = req.params;
 
   return knex('users')

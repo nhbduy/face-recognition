@@ -1,4 +1,4 @@
-const handleImage = (req, res, knex) => {
+const handleImage = knex => (req, res) => {
   const { id } = req.body;
 
   return knex('users')

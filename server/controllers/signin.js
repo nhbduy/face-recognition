@@ -1,4 +1,4 @@
-const handleSignIn = (req, res, knex, bcrypt) => {
+const handleSignIn = (knex, bcrypt) => (req, res) => {
   const { email, password } = req.body;
 
   return knex('login')
