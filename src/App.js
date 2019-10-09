@@ -14,6 +14,8 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 
 import { SIGN_UP, SIGN_IN, SIGN_OUT, HOME } from './route';
 
+import { SERVER_URL } from './constant';
+
 const particleOptions = {
   particles: {
     number: {
@@ -81,7 +83,7 @@ function App() {
   const onButtonSubmit = () => {
     setImageUrl(input);
 
-    fetch('http://localhost:3000/imageUrl', {
+    fetch(`${SERVER_URL}/imageUrl`, {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -90,7 +92,7 @@ function App() {
     })
       .then(response => response.json())
       .then(data => {
-        fetch('http://localhost:3000/image', {
+        fetch(`${SERVER_URL}/image`, {
           method: 'put',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

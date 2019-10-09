@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import { SIGN_IN, HOME } from '../../route';
 
+import { SERVER_URL } from '../../constant';
+
 const SignUp = ({ loadUser, onRouteChange }) => {
   const [signUpName, setSignUpName] = useState(null);
   const [signUpEmail, setSignUpEmail] = useState(null);
@@ -33,7 +35,7 @@ const SignUp = ({ loadUser, onRouteChange }) => {
       return;
     }
 
-    fetch('http://localhost:3000/register', {
+    fetch(`${SERVER_URL}/register`, {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

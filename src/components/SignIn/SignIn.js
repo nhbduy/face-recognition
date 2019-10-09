@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import { SIGN_UP, HOME } from '../../route';
 
+import { SERVER_URL } from '../../constant';
+
 const SignIn = ({ loadUser, onRouteChange }) => {
   const [signInEmail, setSignInEmail] = useState(null);
   const [signInPassword, setSignInPassword] = useState(null);
@@ -15,7 +17,7 @@ const SignIn = ({ loadUser, onRouteChange }) => {
   };
 
   const onSubmitSignIn = () => {
-    fetch('http://localhost:3000/signin', {
+    fetch(`${SERVER_URL}/signin`, {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
