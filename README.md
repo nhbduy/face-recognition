@@ -1,2 +1,2 @@
-Face Recognition Application
-(Built in Node JS/Express and React JS)
+Face Recognition Application (Client)
+(Built in React JS)
