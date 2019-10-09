@@ -31,7 +31,7 @@ const SignIn = ({ loadUser, onRouteChange }) => {
           loadUser(data.user);
           onRouteChange(HOME);
         } else if (data.status === 400 && data.message === 'ko')
-          alert('cannot signing in');
+          console.log('cannot signing in');
       });
   };
 

@@ -24,14 +24,13 @@ const SignUp = ({ loadUser, onRouteChange }) => {
 
   const onRetypePasswordChange = event => {
     if (event.target.value !== signUpPassword) {
-      console.log('match');
       setOkToRegister(true);
     }
   };
 
   const onSubmitSignUp = () => {
     if (!signUpName || !signUpEmail || !signUpPassword || !okToRegister) {
-      alert('cannot register!!!');
+      console.log('cannot register!!!');
       return;
     }
 
