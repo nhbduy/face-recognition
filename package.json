@@ -2,7 +2,7 @@
   "name": "face-recoginition",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://nhbduy.github.io/face-recoginiton",
+  "homepage": "https://nhbduy.github.io/face-recoginition",
   "dependencies": {
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
