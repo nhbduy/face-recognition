@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/face-recoginiton/static/css/main.9e8eb87f.chunk.css",
+    "main.js": "/face-recoginiton/static/js/main.6ec39e56.chunk.js",
+    "main.js.map": "/face-recoginiton/static/js/main.6ec39e56.chunk.js.map",
+    "runtime-main.js": "/face-recoginiton/static/js/runtime-main.ded2d98b.js",
+    "runtime-main.js.map": "/face-recoginiton/static/js/runtime-main.ded2d98b.js.map",
+    "static/css/2.31dafeb2.chunk.css": "/face-recoginiton/static/css/2.31dafeb2.chunk.css",
+    "static/js/2.ca72daa2.chunk.js": "/face-recoginiton/static/js/2.ca72daa2.chunk.js",
+    "static/js/2.ca72daa2.chunk.js.map": "/face-recoginiton/static/js/2.ca72daa2.chunk.js.map",
+    "index.html": "/face-recoginiton/index.html",
+    "precache-manifest.01d7b75f593fb2d0327c1a570905be89.js": "/face-recoginiton/precache-manifest.01d7b75f593fb2d0327c1a570905be89.js",
+    "service-worker.js": "/face-recoginiton/service-worker.js",
+    "static/css/2.31dafeb2.chunk.css.map": "/face-recoginiton/static/css/2.31dafeb2.chunk.css.map",
+    "static/css/main.9e8eb87f.chunk.css.map": "/face-recoginiton/static/css/main.9e8eb87f.chunk.css.map"
+  }
+}
