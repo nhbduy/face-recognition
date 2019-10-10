@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/face-recoginition/static/css/main.93942273.chunk.css",
-    "main.js": "/face-recoginition/static/js/main.b4b54cbf.chunk.js",
-    "main.js.map": "/face-recoginition/static/js/main.b4b54cbf.chunk.js.map",
-    "runtime-main.js": "/face-recoginition/static/js/runtime-main.aa5b162e.js",
-    "runtime-main.js.map": "/face-recoginition/static/js/runtime-main.aa5b162e.js.map",
-    "static/css/2.eb45ad44.chunk.css": "/face-recoginition/static/css/2.eb45ad44.chunk.css",
-    "static/js/2.c5d7391c.chunk.js": "/face-recoginition/static/js/2.c5d7391c.chunk.js",
-    "static/js/2.c5d7391c.chunk.js.map": "/face-recoginition/static/js/2.c5d7391c.chunk.js.map",
-    "index.html": "/face-recoginition/index.html",
-    "precache-manifest.e1570f7ef4c881d6aec5ebbeb16139cb.js": "/face-recoginition/precache-manifest.e1570f7ef4c881d6aec5ebbeb16139cb.js",
-    "service-worker.js": "/face-recoginition/service-worker.js",
-    "static/css/2.eb45ad44.chunk.css.map": "/face-recoginition/static/css/2.eb45ad44.chunk.css.map",
-    "static/css/main.93942273.chunk.css.map": "/face-recoginition/static/css/main.93942273.chunk.css.map"
+    "main.css": "/face-recognition/static/css/main.93942273.chunk.css",
+    "main.js": "/face-recognition/static/js/main.1574dbfb.chunk.js",
+    "main.js.map": "/face-recognition/static/js/main.1574dbfb.chunk.js.map",
+    "runtime-main.js": "/face-recognition/static/js/runtime-main.62445bf5.js",
+    "runtime-main.js.map": "/face-recognition/static/js/runtime-main.62445bf5.js.map",
+    "static/css/2.eb45ad44.chunk.css": "/face-recognition/static/css/2.eb45ad44.chunk.css",
+    "static/js/2.c5d7391c.chunk.js": "/face-recognition/static/js/2.c5d7391c.chunk.js",
+    "static/js/2.c5d7391c.chunk.js.map": "/face-recognition/static/js/2.c5d7391c.chunk.js.map",
+    "index.html": "/face-recognition/index.html",
+    "precache-manifest.d0ecfc3b4afffe4388c2b96f0f4eebbf.js": "/face-recognition/precache-manifest.d0ecfc3b4afffe4388c2b96f0f4eebbf.js",
+    "service-worker.js": "/face-recognition/service-worker.js",
+    "static/css/2.eb45ad44.chunk.css.map": "/face-recognition/static/css/2.eb45ad44.chunk.css.map",
+    "static/css/main.93942273.chunk.css.map": "/face-recognition/static/css/main.93942273.chunk.css.map"
   }
 }
