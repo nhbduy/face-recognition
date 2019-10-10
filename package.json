@@ -2,7 +2,9 @@
   "name": "face-recoginition-client",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://nhbduy.github.io/face-recoginiton",
   "dependencies": {
+    "gh-pages": "^2.1.1",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
     "react-particles-js": "^2.7.0",
@@ -14,7 +16,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "react-scripts build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
