@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/face-recoginiton/static/css/main.93942273.chunk.css",
-    "main.js": "/face-recoginiton/static/js/main.5e0202e7.chunk.js",
-    "main.js.map": "/face-recoginiton/static/js/main.5e0202e7.chunk.js.map",
-    "runtime-main.js": "/face-recoginiton/static/js/runtime-main.13130f0b.js",
-    "runtime-main.js.map": "/face-recoginiton/static/js/runtime-main.13130f0b.js.map",
-    "static/css/2.eb45ad44.chunk.css": "/face-recoginiton/static/css/2.eb45ad44.chunk.css",
-    "static/js/2.c5d7391c.chunk.js": "/face-recoginiton/static/js/2.c5d7391c.chunk.js",
-    "static/js/2.c5d7391c.chunk.js.map": "/face-recoginiton/static/js/2.c5d7391c.chunk.js.map",
-    "index.html": "/face-recoginiton/index.html",
-    "precache-manifest.9e6852a251a470707441e112e238ee50.js": "/face-recoginiton/precache-manifest.9e6852a251a470707441e112e238ee50.js",
-    "service-worker.js": "/face-recoginiton/service-worker.js",
-    "static/css/2.eb45ad44.chunk.css.map": "/face-recoginiton/static/css/2.eb45ad44.chunk.css.map",
-    "static/css/main.93942273.chunk.css.map": "/face-recoginiton/static/css/main.93942273.chunk.css.map"
+    "main.css": "/face-recoginition/static/css/main.93942273.chunk.css",
+    "main.js": "/face-recoginition/static/js/main.b4b54cbf.chunk.js",
+    "main.js.map": "/face-recoginition/static/js/main.b4b54cbf.chunk.js.map",
+    "runtime-main.js": "/face-recoginition/static/js/runtime-main.aa5b162e.js",
+    "runtime-main.js.map": "/face-recoginition/static/js/runtime-main.aa5b162e.js.map",
+    "static/css/2.eb45ad44.chunk.css": "/face-recoginition/static/css/2.eb45ad44.chunk.css",
+    "static/js/2.c5d7391c.chunk.js": "/face-recoginition/static/js/2.c5d7391c.chunk.js",
+    "static/js/2.c5d7391c.chunk.js.map": "/face-recoginition/static/js/2.c5d7391c.chunk.js.map",
+    "index.html": "/face-recoginition/index.html",
+    "precache-manifest.e1570f7ef4c881d6aec5ebbeb16139cb.js": "/face-recoginition/precache-manifest.e1570f7ef4c881d6aec5ebbeb16139cb.js",
+    "service-worker.js": "/face-recoginition/service-worker.js",
+    "static/css/2.eb45ad44.chunk.css.map": "/face-recoginition/static/css/2.eb45ad44.chunk.css.map",
+    "static/css/main.93942273.chunk.css.map": "/face-recoginition/static/css/main.93942273.chunk.css.map"
   }
 }
