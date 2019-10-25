@@ -1,2 +1,2 @@
-export const SERVER_URL = 'https://radiant-island-53374.herokuapp.com';
-export const TEST = 'test';
+export const SERVER_URL = 'https://nhbduy-face-recognition-server.herokuapp.com';
+export const PORT = '3000';
