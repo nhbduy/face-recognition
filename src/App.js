@@ -39,7 +39,7 @@ const defaultUserData = {
 function App() {
   const [input, setInput] = useState('');
   const [imageUrl, setImageUrl] = useState('');
-  const [box, setBox] = useState({});
+  const [boxes, setBoxes] = useState([]);
   const [route, setRoute] = useState(SIGN_IN);
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [user, setUser] = useState(defaultUserData);
@@ -47,7 +47,7 @@ function App() {
   const resetAllState = () => {
     setInput('');
     setImageUrl('');
-    setBox({});
+    setBoxes([]);
     setRoute(SIGN_IN);
     setIsSignedIn(false);
     setUser(defaultUserData);
@@ -58,22 +58,24 @@ function App() {
     setUser({ id, name, email, entries, joined });
   };
 
-  const calculateFaceLocation = data => {
-    const face = data.outputs[0].data.regions[0].region_info.bounding_box;
-    const image = document.getElementById('inputImage');
-    const width = Number(image.width);
-    const height = Number(image.height);
+  const calculateFacesLocation = data => {
+    return data.outputs[0].data.regions.map(region => {
+      const face = region.region_info.bounding_box;
+      const image = document.getElementById('inputImage');
+      const width = Number(image.width);
+      const height = Number(image.height);
 
-    return {
-      leftCol: face.left_col * width,
-      topRow: face.top_row * height,
-      rightCol: width - face.right_col * width,
-      bottomRow: height - face.bottom_row * height
-    };
+      return {
+        leftCol: face.left_col * width,
+        topRow: face.top_row * height,
+        rightCol: width - face.right_col * width,
+        bottomRow: height - face.bottom_row * height
+      };
+    });
   };
 
-  const displayFaceBox = box => {
-    setBox(box);
+  const displayFaceBoxes = box => {
+    setBoxes(box);
   };
 
   const onInputChange = event => {
@@ -103,7 +105,7 @@ function App() {
           .then(count => setUser({ ...user, entries: count }))
           .catch(console.error);
 
-        displayFaceBox(calculateFaceLocation(data));
+        displayFaceBoxes(calculateFacesLocation(data));
       })
       .catch(error => console.error(error));
   };
@@ -124,7 +126,7 @@ function App() {
             onInputChange={onInputChange}
             onButtonSubmit={onButtonSubmit}
           />
-          <FaceRecognition box={box} imageUrl={imageUrl} />
+          <FaceRecognition boxes={boxes} imageUrl={imageUrl} />
         </React.Fragment>
       );
     else if (route === SIGN_IN || route === SIGN_OUT)
