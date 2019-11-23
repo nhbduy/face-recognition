@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { SIGN_IN, HOME } from '../../route';
 
-import { SERVER_URL } from '../../constant';
+import SERVER_URL from '../../config';
 
 const SignUp = ({ loadUser, onRouteChange }) => {
   const [signUpName, setSignUpName] = useState(null);
