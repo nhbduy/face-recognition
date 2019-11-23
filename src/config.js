@@ -1,4 +1,4 @@
-const MODE = 1; // 1-DEV, 2-PROD
+const MODE = 2; // 1-DEV, 2-PROD
 
 const SERVER_URL_DEV = 'http://localhost:5000';
 
