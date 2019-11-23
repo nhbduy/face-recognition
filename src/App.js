@@ -43,8 +43,8 @@ function App() {
   const [input, setInput] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [boxes, setBoxes] = useState([]);
-  const [route, setRoute] = useState(HOME);
-  const [isSignedIn, setIsSignedIn] = useState(true);
+  const [route, setRoute] = useState(SIGN_IN);
+  const [isSignedIn, setIsSignedIn] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [user, setUser] = useState(defaultUserData);
 
@@ -52,8 +52,8 @@ function App() {
     setInput('');
     setImageUrl('');
     setBoxes([]);
-    setRoute(HOME);
-    setIsSignedIn(true);
+    setRoute(SIGN_IN);
+    setIsSignedIn(false);
     setUser(defaultUserData);
   };
 
