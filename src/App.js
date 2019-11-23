@@ -14,7 +14,7 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 
 import { SIGN_UP, SIGN_IN, SIGN_OUT, HOME } from './route';
 
-import { SERVER_URL } from './constant';
+import { SERVER_URL } from './config';
 
 const particleOptions = {
   particles: {
