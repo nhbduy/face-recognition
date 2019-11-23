@@ -11,8 +11,11 @@ import Logo from './components/Logo/Logo';
 import Rank from './components/Rank/Rank';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
+import Profile from './components/Profile/Profile';
 
-import { SIGN_UP, SIGN_IN, SIGN_OUT, HOME } from './route';
+import Modal from './components/Modal/Modal';
+
+import { HOME, SIGN_UP, SIGN_IN, SIGN_OUT } from './route';
 
 import SERVER_URL from './config';
 
@@ -40,16 +43,17 @@ function App() {
   const [input, setInput] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [boxes, setBoxes] = useState([]);
-  const [route, setRoute] = useState(SIGN_IN);
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [route, setRoute] = useState(HOME);
+  const [isSignedIn, setIsSignedIn] = useState(true);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [user, setUser] = useState(defaultUserData);
 
   const resetAllState = () => {
     setInput('');
     setImageUrl('');
     setBoxes([]);
-    setRoute(SIGN_IN);
-    setIsSignedIn(false);
+    setRoute(HOME);
+    setIsSignedIn(true);
     setUser(defaultUserData);
   };
 
@@ -116,11 +120,16 @@ function App() {
     setRoute(data);
   };
 
+  const toggleModal = () => {
+    setIsProfileOpen(!isProfileOpen);
+  };
+
   const renderContentDOM = () => {
     if (route === HOME)
       return (
         <React.Fragment>
           <Logo />
+
           <Rank user={user} />
           <ImageLinkForm
             onInputChange={onInputChange}
@@ -138,7 +147,16 @@ function App() {
   return (
     <div className='App'>
       <Particles className='particles' params={particleOptions} />
-      <Navigation isSignedIn={isSignedIn} onRouteChange={onRouteChange} />
+      <Navigation
+        isSignedIn={isSignedIn}
+        onRouteChange={onRouteChange}
+        toggleModal={toggleModal}
+      />
+      {isProfileOpen && (
+        <Modal>
+          <Profile isProfileOpen={isProfileOpen} toggleModal={toggleModal} />
+        </Modal>
+      )}
       {renderContentDOM()}
     </div>
   );

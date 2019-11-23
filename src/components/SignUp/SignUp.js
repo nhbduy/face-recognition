@@ -64,7 +64,7 @@ const SignUp = ({ loadUser, onRouteChange }) => {
                   Name
                 </label>
                 <input
-                  className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                  className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 input-hover-black'
                   type='text'
                   name='name'
                   id='name'
@@ -76,7 +76,7 @@ const SignUp = ({ loadUser, onRouteChange }) => {
                   Email
                 </label>
                 <input
-                  className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                  className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 input-hover-black'
                   type='email'
                   name='email-address'
                   id='email-address'
@@ -88,7 +88,7 @@ const SignUp = ({ loadUser, onRouteChange }) => {
                   Password
                 </label>
                 <input
-                  className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                  className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 input-hover-black'
                   type='password'
                   name='password'
                   id='password'
@@ -100,7 +100,7 @@ const SignUp = ({ loadUser, onRouteChange }) => {
                   Re-type Password
                 </label>
                 <input
-                  className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                  className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100 input-hover-black'
                   type='password'
                   name='retype-password'
                   id='retype-password'

@@ -4,11 +4,13 @@
   "private": true,
   "homepage": "https://nhbduy.github.io/face-recognition",
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
     "react-particles-js": "^2.7.0",
     "react-scripts": "3.1.2",
     "react-tilt": "^0.1.4",
+    "reactstrap": "^8.1.1",
     "tachyons": "^4.11.1"
   },
   "scripts": {
