@@ -23,7 +23,7 @@ const SignUp = ({ loadUser, onRouteChange }) => {
   };
 
   const onRetypePasswordChange = event => {
-    if (event.target.value !== signUpPassword) {
+    if (event.target.value === signUpPassword) {
       setOkToRegister(true);
     }
   };
