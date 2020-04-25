@@ -25,10 +25,10 @@ const particleOptions = {
       value: 30,
       density: {
         enable: true,
-        value_area: 800
-      }
-    }
-  }
+        value_area: 800,
+      },
+    },
+  },
 };
 
 const defaultUserData = {
@@ -36,7 +36,7 @@ const defaultUserData = {
   name: '',
   email: '',
   entries: 0,
-  joined: ''
+  joined: '',
 };
 
 function App() {
@@ -57,13 +57,13 @@ function App() {
     setUser(defaultUserData);
   };
 
-  const loadUser = data => {
+  const loadUser = (data) => {
     const { id, name, email, entries, joined } = data;
     setUser({ id, name, email, entries, joined });
   };
 
-  const calculateFacesLocation = data => {
-    return data.outputs[0].data.regions.map(region => {
+  const calculateFacesLocation = (data) => {
+    return data.outputs[0].data.regions.map((region) => {
       const face = region.region_info.bounding_box;
       const image = document.getElementById('inputImage');
       const width = Number(image.width);
@@ -73,16 +73,16 @@ function App() {
         leftCol: face.left_col * width,
         topRow: face.top_row * height,
         rightCol: width - face.right_col * width,
-        bottomRow: height - face.bottom_row * height
+        bottomRow: height - face.bottom_row * height,
       };
     });
   };
 
-  const displayFaceBoxes = box => {
+  const displayFaceBoxes = (box) => {
     setBoxes(box);
   };
 
-  const onInputChange = event => {
+  const onInputChange = (event) => {
     setInput(event.target.value);
   };
 
@@ -93,28 +93,28 @@ function App() {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        input
-      })
+        input,
+      }),
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         fetch(`${SERVER_URL}/image`, {
           method: 'put',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            id: user.id
-          })
+            id: user.id,
+          }),
         })
-          .then(response => response.json())
-          .then(count => setUser({ ...user, entries: count }))
+          .then((response) => response.json())
+          .then((count) => setUser({ ...user, entries: count }))
           .catch(console.error);
 
         displayFaceBoxes(calculateFacesLocation(data));
       })
-      .catch(error => console.error(error));
+      .catch((error) => console.error(error));
   };
 
-  const onRouteChange = data => {
+  const onRouteChange = (data) => {
     if (data === SIGN_OUT) resetAllState();
     else if (data === HOME) setIsSignedIn(true);
     setRoute(data);

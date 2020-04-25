@@ -10,19 +10,19 @@ const SignUp = ({ loadUser, onRouteChange }) => {
   const [signUpPassword, setSignUpPassword] = useState(null);
   const [okToRegister, setOkToRegister] = useState(false);
 
-  const onNameChange = event => {
+  const onNameChange = (event) => {
     setSignUpName(event.target.value);
   };
 
-  const onEmailChange = event => {
+  const onEmailChange = (event) => {
     setSignUpEmail(event.target.value);
   };
 
-  const onPasswordChange = event => {
+  const onPasswordChange = (event) => {
     setSignUpPassword(event.target.value);
   };
 
-  const onRetypePasswordChange = event => {
+  const onRetypePasswordChange = (event) => {
     if (event.target.value === signUpPassword) {
       setOkToRegister(true);
     }
@@ -40,11 +40,11 @@ const SignUp = ({ loadUser, onRouteChange }) => {
       body: JSON.stringify({
         name: signUpName,
         email: signUpEmail,
-        password: signUpPassword
-      })
+        password: signUpPassword,
+      }),
     })
-      .then(response => response.json())
-      .then(user => {
+      .then((response) => response.json())
+      .then((user) => {
         if (user.id) {
           loadUser(user);
           onRouteChange(HOME);
