@@ -1,0 +1,13 @@
+/build/
+/app
+/bootstrap
+/config
+/database
+/docker
+/node_modules
+/public
+/routes
+/storage
+/tests
+/src/**/tests/**
+/vendor
