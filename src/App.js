@@ -37,6 +37,8 @@ const defaultUserData = {
   email: '',
   entries: 0,
   joined: '',
+  age: '',
+  pet: '',
 };
 
 function App() {
@@ -58,12 +60,20 @@ function App() {
   };
 
   const loadUser = (data) => {
-    const { id, name, email, entries, joined } = data;
-    setUser({ id, name, email, entries, joined });
+    const { id, name, email, entries, joined, age, pet } = data;
+    setUser({
+      id,
+      name,
+      email,
+      entries,
+      joined,
+      age,
+      pet,
+    });
   };
 
-  const calculateFacesLocation = (data) => {
-    return data.outputs[0].data.regions.map((region) => {
+  const calculateFacesLocation = (data) =>
+    data.outputs[0].data.regions.map((region) => {
       const face = region.region_info.bounding_box;
       const image = document.getElementById('inputImage');
       const width = Number(image.width);
@@ -76,7 +86,6 @@ function App() {
         bottomRow: height - face.bottom_row * height,
       };
     });
-  };
 
   const displayFaceBoxes = (box) => {
     setBoxes(box);
@@ -125,9 +134,9 @@ function App() {
   };
 
   const renderContentDOM = () => {
-    if (route === HOME)
+    if (route === HOME) {
       return (
-        <React.Fragment>
+        <>
           <Logo />
 
           <Rank user={user} />
@@ -136,11 +145,12 @@ function App() {
             onButtonSubmit={onButtonSubmit}
           />
           <FaceRecognition boxes={boxes} imageUrl={imageUrl} />
-        </React.Fragment>
+        </>
       );
-    else if (route === SIGN_IN || route === SIGN_OUT)
+    }
+    if (route === SIGN_IN || route === SIGN_OUT)
       return <SignIn loadUser={loadUser} onRouteChange={onRouteChange} />;
-    else if (route === SIGN_UP)
+    if (route === SIGN_UP)
       return <SignUp loadUser={loadUser} onRouteChange={onRouteChange} />;
   };
 
@@ -154,7 +164,12 @@ function App() {
       />
       {isProfileOpen && (
         <Modal>
-          <Profile isProfileOpen={isProfileOpen} toggleModal={toggleModal} />
+          <Profile
+            user={user}
+            loadUser={loadUser}
+            isProfileOpen={isProfileOpen}
+            toggleModal={toggleModal}
+          />
         </Modal>
       )}
       {renderContentDOM()}
